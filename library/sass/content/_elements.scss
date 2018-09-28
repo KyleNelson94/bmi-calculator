@@ -1,0 +1,60 @@
+//Misc
+img {
+	display: inline-block;
+	max-width: 100%;
+	width: auto;
+	&.left {
+		margin: 0.625em 0.625em 0 0;
+	}
+	&.right {
+		margin: 0.625em 0 0 0.625em;
+	}
+}
+blockquote {
+	border-left: 1px solid $tertiaryColor;
+	color: $tertiaryColor;
+	font-size: 1.733333333333333em;
+	font-style: normal;
+	line-height: 1.2em;
+	margin: 1.923076923076923em 0;
+	padding: 0.5769230769230769em;
+	footer {
+		font-size: 0.5em;
+		line-height: 1.230769230769231em;
+		padding-top: 1.153846153846154em;
+		text-align: right;
+		cite {
+			font-style: italic;
+		}
+		span {
+			display: block;
+		}
+	}
+}
+hr {
+	background-color: $tertiaryColor;
+	border: 0;
+	height: 2px;
+	margin: 3.125em 0;
+	&.subsplit {
+		height: 1px;
+		margin: 1.5625em auto;
+		width: 50%;
+	}
+}
+em {
+	background-color: $tertiaryColor;
+	color: $secondaryColor;
+    font-size: relSize(12, 16);
+    font-style: normal;
+	padding: 2px;
+}
+fieldset {
+	border: 0;
+}
+legend {
+	display: none;
+}
+.abfill {
+    @include fill;
+}

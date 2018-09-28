@@ -1,0 +1,287 @@
+//MIXINS
+////Relative size
+@function relSize($pixels, $context : 16) {
+    $relSize: ($pixels / $context) * 1em;
+    @return $relSize;
+}
+
+////Golden ratio
+@function ratio($val : 16) {
+    $ratioVal: relSize(($val * $ratio), $val);
+    @return $ratioVal;
+}
+
+////Form placeholder styles
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content}
+	&:-ms-input-placeholder      {@content}  
+}
+////Center content with absolute positioning
+@mixin centre {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+////Fill content
+@mixin fill {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+////Center content horizontally with absolute positioning
+@mixin centreY {
+	left: 50%;
+	position: absolute;
+	top: 0;
+	transform: translateY(-50%);
+}
+////Position child content in center of element with flex box
+@mixin flexCentre {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+////Style a scrollable element in webkit bl__rowsers
+@mixin scrollbar($scrollBg, $thumbBg, $scrollBoxShadow) {
+	&::-webkit-scrollbar {
+		background: $scrollBg;
+		border-radius: 10px;
+		box-shadow: inset 1px 1px 1px $scrollBoxShadow;
+		height: 5px;
+		-webkit-appearance: none;
+		width: 5px;
+	}
+	::-webkit-scrollbar-track {
+    	box-shadow: inset 0 0 6px $scrollBoxShadow;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: $thumbBg;
+		border-radius: 10px;
+	}
+}
+
+//Pull content left
+@mixin pullLeft {
+    @media (min-width: $maxWidth) {
+        left: calc((-100vw + #{$maxWidth}) / 2 - 6px);
+    }
+    @media (max-width: $maxWidth) {
+        left: -10px;
+    }
+    @media (max-width: 480px) {
+        right: -10px;
+    }
+}
+@mixin pullLeftAlt {
+    @media (min-width: $maxWidth) {
+        right: calc((-100vw + #{$maxWidth}) / 2 - 6px);
+    }
+    @media (max-width: $maxWidth) {
+        right: -10px;
+    }
+    @media (max-width: 480px) {
+        left: -10px;
+    }
+}
+@mixin pullRight {
+    @media (min-width: $maxWidth) {
+        margin-right: calc((-100vw + #{$maxWidth}) / 2 - 6px);
+    }
+    @media (max-width: $maxWidth) {
+        margin-right: -10px;
+    }
+    @media (max-width: 480px) {
+        margin-left: -10px;
+    }
+}
+@mixin pullRightAlt {
+    @media (min-width: $maxWidth) {
+        margin-left: calc((-100vw + #{$maxWidth}) / 2 - 6px);
+    }
+    @media (max-width: $maxWidth) {
+        margin-left: -10px;
+    }
+    @media (max-width: 480px) {
+        margin-right: -10px;
+    }
+}
+
+@mixin headings($maxHeadSize, $diff) {
+	h1 {
+		font-size: ((1 / 16) * $maxHeadSize) * 1em;
+	}
+	@for $i from 2 to 7 {
+		$fSize: $maxHeadSize * $diff;
+		$val: (1 / 16) * $fSize;
+		h#{$i} {
+			font-size:  unquote("$val#{em}");
+		}
+		$maxHeadSize: $fSize;
+	}
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+//MEDIA QUERIES
+$br-smallest: 360px;
+$br-phoneport: 375px;
+$br-phone: 480px;
+$br-largephone: 650px;
+$br-tablet: 768px;
+$br-netbook: 1024px;
+$br-contentbreak: 1280px;
+$br-largest: 1366px;
+$br-height: 800px;
+$br-retina: "-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx";
+
+////SMALLEST
+@mixin below360 {
+	@media (max-width: $br-smallest) {
+		@content;
+	}
+}
+@mixin above360 {
+	@media (min-width: unquote("#{$br-smallest + 1px}")) {
+		@content;
+	}
+}
+@mixin below375 {
+	@media (max-width: $br-phoneport) {
+		@content;
+	}
+}
+@mixin above375 {
+	@media (min-width: unquote("#{$br-phoneport + 1px}")) {
+		@content;
+	}
+}
+////PHONE
+@mixin below480 {
+	@media (max-width: $br-phone) {
+		@content;
+	}
+}
+@mixin above480 {
+	@media (min-width: unquote("#{$br-phone + 1px}")) {
+		@content;
+	}
+}
+@mixin below650 {
+	@media (max-width: $br-largephone) {
+		@content;
+	}
+}
+@mixin above650 {
+	@media (max-width: unquote("#{$br-largephone + 1px}")) {
+		@content;
+	}
+}
+////BETWEEN PHONE TABLET
+@mixin between480and768 {
+	@media (min-width: unquote("#{$br-phone + 1px}")) and (max-width: $br-tablet) {
+		@content;
+	}
+}
+////TABLET
+@mixin below768 {
+	@media (max-width: #{$br-tablet}) {
+		@content;
+	}
+}
+@mixin above768 {
+	@media (min-width: unquote("#{$br-tablet + 1px}")) {
+		@content;
+	}
+}
+////BELOW TABLET NETBOOK
+@mixin between768and1024 {
+	@media (min-width: unquote("#{$br-tablet + 1px}")) and (max-width: $br-netbook) {
+		@content;
+	}
+}
+////NETBOOK
+@mixin below1024 {
+	@media (max-width: $br-netbook) {
+		@content;
+	}
+}
+@mixin above1024 {
+	@media (min-width: unquote("#{$br-netbook + 1px}")) {
+		@content;
+	}
+}
+////BELOW NETBOOK DESKTOP
+@mixin between1024and1366 {
+	@media (min-width: unquote("#{$br-netbook + 1px}")) and (max-width: $br-largest) {
+		@content;
+	}
+}
+////CONTENT BREAK
+@mixin below1280 {
+	@media (max-width: $br-contentbreak) {
+		@content;
+	}
+}
+@mixin above1280 {
+	@media (min-width: unquote("#{$br-contentbreak + 1px}")) {
+		@content;
+	}
+}
+////DESKTOP
+@mixin below1366 {
+	@media (max-width: $br-largest) {
+		@content;
+	}
+}
+@mixin above1366 {
+	@media (min-width: unquote("#{$br-largest + 1px}")) {
+		@content;
+	}
+}
+////BELOW HEIGHT
+@mixin belowHeight800 {
+	@media (max-height: $br-height) {
+		@content;
+	}
+}
+////ABOVE HEIGHT
+@mixin aboveHeight800 {
+	@media (min-height: unquote("#{$br-height + 1}")) {
+		@content;
+	}
+}
+////RETINA
+@mixin retina {
+	@media only screen and ($retina) {
+		@content;
+	}
+}

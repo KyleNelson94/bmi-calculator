@@ -1,0 +1,23 @@
+html {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+*, *:before, *:after {
+	-moz-box-sizing: inherit; -webkit-box-sizing: inherit; box-sizing: inherit;
+}
+html {
+	font-size: $baseFontSize;
+}
+body {
+	background: $bgcolor;
+	color: $primaryColor;
+	font-family: $mainFontFamily;
+	font-size: $maxBodyFont;
+	line-height: ratio(16);
+	-webkit-font-smoothing: antialised;
+    @media (min-width: 481px) and (max-width: 960px) {
+        @include fluid-type(480px, 960px, 14px, 16px);
+    }
+    @include below480 {
+        font-size: $minBodyFont;
+    }
+}

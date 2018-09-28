@@ -1,0 +1,124 @@
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        $browser: '-webkit-' !global; @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        $browser: '-moz-' !global; @content;
+    }
+    @-o-keyframes #{$animationName} {
+        $browser: '-o-' !global; @content;
+    }
+    @keyframes #{$animationName} {
+        $browser: '' !global; @content;
+    }
+} $browser: null;
+
+.no-js {
+    [data-anim*="fade"] {
+        opacity: 1;
+    }
+}
+
+////// For fade animations add class here //////
+[data-anim*="fade"] {
+    opacity: 0;
+}
+
+////// Animate //////
+[data-anim] {
+    animation-duration: 0.6s;
+	animation-fill-mode: both;
+    @for $i from 1 through 50 {
+		&[data-anim__delay="#{$i}"] { animation-delay: ($i * 0.1s); }
+		&[data-anim__duration="#{$i}"] { animation-duration: ($i * 0.1s); }
+	}
+    &:not([data-anim__scroll="true"]) {
+        &[data-anim~="fadein"] {
+            animation-name: fadeIn;
+        }
+        &[data-anim~="fadebounce"] {
+            animation-name: fadeBounce;
+        }
+        &[data-anim~="fadescale"] {
+            animation-name: fadeScale;
+        }
+        &[data-anim~="fadedownfromtop"] {
+            animation-name: fadeDownFromTop;
+            animation-timing-function: ease-in;
+        }
+        &[data-anim~="stroke"] {
+            animation-name: strokeAnim;
+        }
+        &[data-anim~="fadeslideup"] {
+            animation-name: slideUp;
+        }
+        &[data-anim~="fadeslideupmax"] {
+            animation-name: slideUpMax;
+        }
+    }
+    &[data-anim__animate="true"] {
+        &[data-anim~="fadein"] {
+            animation-name: fadeIn;
+        }
+        &[data-anim~="fadebounce"] {
+            animation-name: fadeBounce;
+        }
+        &[data-anim~="fadescale"] {
+            animation-name: fadeScale;
+        }
+        &[data-anim~="fadedownfromtop"] {
+            animation-name: fadeDownFromTop;
+            animation-timing-function: ease-in;
+        }
+        &[data-anim~="fadeslideup"] {
+            animation-name: slideUp;
+        }
+        &[data-anim~="fadeslideupmax"] {
+            animation-name: slideUpMax;
+            animation-timing-function: ease-in;
+        }
+        &[data-anim~="stroke"] {
+            animation-name: strokeAnim;
+        }
+    }
+    &[data-anim__iteration="infinte"] {
+        animation-iteration-count: infinite;
+    }
+}
+@include keyframes('fadeIn') {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@include keyframes('fadeBounce') {
+	0% { opacity: 0; }
+	50% { opacity: 1; #{$browser}transform: scale(1.1);	}
+	70% { #{$browser}transform: scale(1); }
+	80% { #{$browser}transform: scale(1.05); }
+	95% { #{$browser}transform: scale(1.025); }
+	100% { #{$browser}transform: scale(1); opacity: 1; }
+}
+@include keyframes('fadeScale') {
+	0% { opacity: 0; }
+	75% { opacity: 1; #{$browser}transform: scale(1.1);	}
+	100% { #{$browser}transform: scale(1); opacity: 1; }
+}
+@include keyframes('fadeDownFromTop') {
+	0% { #{$browser}transform: translateY(-1000px); opacity: 0; }
+	100% { #{$browser}transform: translateY(0); opacity: 1; }
+}
+@include keyframes('strokeAnim') {
+	100% { stroke-dashoffset: 0; }
+}
+@include keyframes('slideUp') {
+	0% { #{$browser}transform: translateY(200px); opacity: 0; }
+	100% { #{$browser}transform: translateY(0); opacity: 1; }
+}
+@include keyframes('slideUpMax') {
+	0% { #{$browser}transform: translateY(1000px); opacity: 0; }
+    50% { #{$browser}transform: translateY(500px); opacity: 1; }
+	100% { #{$browser}transform: translateY(0); opacity: 1; }
+}
+@include keyframes('slideUpMin') {
+	0% { #{$browser}transform: translateY(50px); opacity: 0; }
+	100% { #{$browser}transform: translateY(0); opacity: 1; }
+}

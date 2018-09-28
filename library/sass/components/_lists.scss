@@ -1,0 +1,26 @@
+//PREFIX
+////m__
+
+//PREFIX
+////c__listing
+
+.m {
+    &__listing {
+        &__title {
+            //Listing title
+            &--center {
+                //Centered listing title
+                text-align: center;
+            }
+        }
+        &__viewAll {
+            //If there is a view all button
+            margin-top: relSize(20, 16);
+        }
+        &__items {
+            &--modifier, &--anotherModifier {
+                
+            }
+        }
+    }
+}

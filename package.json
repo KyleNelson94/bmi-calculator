@@ -1,0 +1,22 @@
+{
+	"name": "FW",
+	"version": "0.1.0",
+	"devDependencies": {
+		"grunt": "^1.0.1",
+		"grunt-notify": "^0.4.5",
+		"grunt-autoprefixer": "^3.0.4",
+		"grunt-browser-sync": "^2.2.0",
+		"grunt-sass": "^2.0.0",
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-cssmin": "^2.0.0",
+		"grunt-contrib-uglify": "^2.3.0",
+		"grunt-contrib-qunit": "^2.0.0",
+		"grunt-contrib-jshint": "^1.1.0",
+		"grunt-contrib-watch": "^1.0.0",
+		"grunt-critical": "^1.0.0",
+		"grunt-newer": "^1.2.0",
+		"grunt-tinyimg": "1.0.0",
+		"underscore": "~1.8.3",
+		"grunt-ncftp-push": "0.2.0"
+	}
+}

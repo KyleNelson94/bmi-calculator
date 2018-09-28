@@ -1,0 +1,46 @@
+//Global variables used for styles throughout the framework and for various calculations
+
+//PAGE BACKGROUND
+$bgcolor: rgb(255, 255, 255);
+
+//CONTENT CONTAINER
+$containerPadding: 0 20px;
+$totalContainerPadding: 40px;
+$maxWidth: 1440px;
+
+//SITEWIDE COLORS
+$primaryColor: rgb(49, 49, 49);
+$secondaryColor: rgb(255, 255, 255);
+$tertiaryColor: rgb(0, 91, 210);
+$red: rgb(230, 51, 42);
+$green: rgb(34,139,34);
+$color-bg: #96031A;
+
+//FONT
+$mainFontFamily: 'Montserrat', sans-serif;
+//BASE FONT SIZE
+$baseFontSize : 62.5%;
+$maxBodyFont: 1.6em;
+$minBodyFont: 1.4em;
+$fontSizePx: 16;
+////TITLE FONT SIZE
+$maxHeadSize: 39.81312;
+$diff: 0.8333341;
+
+//GOLDEN RATIO
+////Used for working out optimal line-height and line-width throughout
+$ratio: 1.61803399;
+
+//GENERIC color
+$errorcolor: $red;
+$successcolor: $green;
+
+//TOOLTIP
+$tooltipWidth: 280px;
+$tooltipBg: rgb(234, 234, 234);
+
+//LAYOUT
+////Can be maximum 24
+$l__colNumber: 12;
+
+@import "mixins";

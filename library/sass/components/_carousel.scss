@@ -1,0 +1,67 @@
+.m__carousel {
+    &__items {
+        overflow: hidden;
+    }
+    &__item {
+        float: left;
+    }
+    .slick-dots {
+        bottom: relSize(30, 16);
+        position: absolute;
+        right: relSize(30, 16);
+    }
+    &--simple {
+        position: relative;
+        &__check[type="radio"] {
+            display: none;
+            @for $i from 1 through 10 {
+                &:checked {
+                    &[data-item="#{$i}"] {
+                        ~.m__carousel--simple__items {
+                            [data-item="#{$i}"] {
+                                opacity: 1;
+                                z-index: 5;
+                            }
+                        }
+                        ~ .m__carousel--simple__pagination {
+                            [data-item="#{$i}"] {
+                                background-color: $tertiaryColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &__items {
+            height: 50vh;
+        }
+        &__item {
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        &__pagination {
+            bottom: relSize(30, 16);
+            position: absolute;
+            right: relSize(30, 16);
+            z-index: 10;
+            label {
+                background-color: $primaryColor;
+                border-radius: 50%;
+                cursor: pointer;
+                height: 15px;
+                float: left;
+                margin: 0;
+                padding: 0;
+                transition: all ease-in 0.2s;
+                width: 15px;
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

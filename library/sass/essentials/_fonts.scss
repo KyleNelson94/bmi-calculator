@@ -1,0 +1,12 @@
+//Include external font files here
+@font-face {
+    font-family: 'FONTNAME';
+    src: url('FONTPATH');
+    src: url('FONTPATH.eot?#iefix') format('embedded-opentype'),
+         url('FONTPATH.woff2') format('woff2'),
+         url('FONTPATH.woff') format('woff'),
+         url('FONTPATH.ttf') format('truetype'),
+         url('FONTPATH.svg#cronos_mmregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

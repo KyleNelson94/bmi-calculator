@@ -1,0 +1,86 @@
+.c {
+    &__tile {
+        &--imgTile {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            color: $secondaryColor;
+            position: relative;
+            &::before {
+                background-color: rgba(0, 0, 0, 0.6);
+                bottom: 0;
+                content: "";
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            &::after {
+                content: "";
+                display: block;
+                padding-top: 70.60133630289532%;
+            }
+            > div {
+                @include fill;
+                padding: relSize(30, 16);
+            }
+            &__title {
+                font-size: relSize(25, 16);
+                line-height: relSize(30, 25);
+                margin-bottom: relSize(20, 30);
+                transition: all ease-out 0.2s;
+            }
+            &__subTitle {
+                font-size: relSize(20, 16);
+                line-height: relSize(25, 20);
+                transition: all ease-out 0.2s;
+            }
+            &:hover {
+                .c__tile--imgTile__title {
+                    transform: translateX(10px);
+                }
+                .c__tile--imgTile__subTitle {
+                    transform: translateX(10px);
+                    transition-delay: 0.1s;
+                }
+            }
+        }
+        &--newsTile {
+            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4);
+            transition: all ease-in 0.2s;
+            &:hover {
+                box-shadow: none;
+            }
+            &__img {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: 50% 50%;
+                margin-bottom: relSize(20, 16);
+                position: relative;
+                &::before {
+                    background-color: rgb(0, 0, 0);
+                    content: "";
+                    display: block;
+                    padding-top: 56.36363636363636%;
+                }
+                a {
+                    @include fill;
+                    text-indent: -9999px;
+                }
+            }
+            &__title {
+                font-size: relSize(20, 16);
+                line-height: relSize(26, 20);
+                margin-bottom: relSize(20, 20);
+                min-height: relSize(52, 20);
+                padding: relSize(5, 20);
+                text-transform: none;
+            }
+            &__summary {
+                font-size: relSize(18, 16);
+                line-height: relSize(28, 18);
+                padding: relSize(5, 18);
+            }
+        }
+    }
+}

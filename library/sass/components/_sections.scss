@@ -1,0 +1,13 @@
+.c__section {
+    height: 100vh;
+    overflow: hidden;
+    h1 {
+        color: $secondaryColor;
+        z-index: 2;
+        margin-bottom: 50px;
+    }
+    @include below650 {
+        padding: 0 50px;
+        text-align: center;
+    }
+}

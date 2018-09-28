@@ -1,0 +1,93 @@
+//PREFIX
+////btn__
+
+%button {
+	display: inline-block;
+    font-size: relSize(14, 16);
+	font-weight: 600;
+	line-height: relSize(16, 14);
+	padding: relSize(14, 14) relSize(25, 14);
+    text-align: center;
+    text-transform: none;
+    z-index: 2;
+}
+.btn {
+    @extend %button;
+	&--standard {
+		border: 2px solid $secondaryColor;
+        color: $secondaryColor;
+	}
+    &--alt {
+        background: $secondaryColor;
+        color: $primaryColor;
+        &:hover {
+			background-color: darken($secondaryColor, 10%);
+		}
+    }
+    &--opaque {
+        background: rgba(0,0,0,0.2);
+        color: $secondaryColor;
+        &:hover {
+			background-color: rgba(0,0,0,0.3);
+		}
+    }
+    &--progress {
+        padding-right: relSize(65, 16);
+        position: relative;
+        &::after {
+            background-image: url(../images/icons/progress-icon.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            content: "";
+            height: 14px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transition: all ease-in 0.2s;
+            transform: translateY(-50%);
+            width: 8px;
+        }
+        &:hover {
+            &::after {
+                transform: translateY(-50%) translateX(5px);
+            }
+        }
+    }
+    &--full {
+        display: block;
+        width: 100%;
+    }
+	&:hover {
+		text-decoration: none;
+	}
+}
+.button-hover {
+    position: relative;
+    transition-property: color;
+    transition-duration: 0.5s;
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $secondaryColor;
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        transition-property: transform;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-out;
+    }
+    &:active,
+    &:focus,
+    &:hover {
+        color: $color-bg;
+    }
+}
+.button-hover:hover:before, .button-hover:focus:before, .button-hover:active:before {
+    transform: scaleX(1);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}

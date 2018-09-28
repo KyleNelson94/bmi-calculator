@@ -1,0 +1,226 @@
+$formBorder: 1px solid $tertiaryColor;
+$formBorderRadius: 0;
+$formPadding: 0.625em;
+$labelSize: 0.8125em;
+
+form {
+	margin: 0;
+	padding: 0;
+	z-index: 2;
+}
+input, label, textarea, select {
+	display: block;
+	width: 100%;
+}
+label {
+	font-size: $labelSize;
+	font-weight: 600;
+}
+input, textarea, select {
+	border: $formBorder;
+	border-radius: $formBorderRadius;
+	margin: 0;
+	padding: $formPadding;
+	@include placeholder {
+		color: lighten($primaryColor, 10%);
+		font-size: relSize(12, 16);
+	};
+	&:active, &:focus {
+		outline: none;
+	}
+	&:active {
+		font-size: 16px;
+	}
+}
+textarea {
+	height: 150px;
+}
+input[type='checkbox'], input[type='radio'] {
+	border-radius: 0;
+	display: inline-block;
+	height: 15px;
+	left: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 15px;
+	~ label {
+		padding-left: 1.5625em;
+		//TODO add checkbox using psuedo
+	}
+}
+button {
+	border: none;
+	border-radius: 0;
+	margin: 0;
+	@extend .btn;
+	@extend .btn--standard;
+}
+input[type="submit"] {
+	border: none;
+	transition: all ease-in 0.2s;
+	width: auto;
+	@extend .btn;
+	@extend .btn--standard;
+}
+
+.form {
+	margin-bottom: 0;
+    padding: 0;
+    &--fancy {
+        input:not([type="submit"]), textarea {
+            background-color: transparent;
+            position: relative;
+            z-index: 2;
+            &:active, &:focus, &.hasval {
+                border-color: $tertiaryColor;
+                ~ label {
+                    color: $primaryColor;
+                    top: 0;
+                    z-index: 2;
+                }
+            }
+        }
+        label {
+            background-color: $tertiaryColor;
+            color: $secondaryColor;
+            font-weight: 400;
+            left: relSize(10, 16);
+            padding: 0 relSize(10, 16);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all ease-in 0.2s;
+            width: auto;
+		}
+		select, textarea {
+			~ label {
+				top: 0;
+			}
+		}
+    }
+    &__row {
+        margin-bottom: relSize(20, 16);
+		position: relative;
+		&--singleField {
+			position: relative;
+			> input[type="text"] {
+				padding-bottom: relSize(12, 16);
+				padding-top: relSize(12, 16);
+				padding-right: relSize(100, 16);
+			}
+
+			input[type="submit"] {
+				bottom: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+    }
+}
+
+.validateErrorRow {
+	background-color: $errorcolor;
+	color: $secondaryColor;
+	font-size: 0.8125em;
+	font-weight: 600;
+	left: 0;
+	line-height: 1em;
+	padding: 0.3846153846153846em;
+	position: absolute;
+	top: 100%;
+	z-index: 1;
+	&::before {
+		border-bottom: 2 solid $errorcolor;
+		border-left: 2 solid transparent;
+		border-right: 2 solid transparent;
+		content: "";
+		left: 2;
+		position: absolute;
+		top: -2;
+	}
+}
+.c__form {
+	&__progress {
+		position: relative;
+		text-align: center;
+		&#progress-bar {
+			padding: relSize(35, 16);
+		}
+		&__item {
+			display: inline-block;
+			border: 1px solid $color-bg;
+			border-radius: 50%;
+			background-color: $color-bg;
+			height: 100px;
+			width: 100px;
+			position: relative;
+			&.active {
+				background-color: $secondaryColor;
+				span {
+					color: $color-bg;
+				}
+			}
+			span {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%) translateX(-50%);
+				left: 50%;
+				color: $secondaryColor;
+			}
+			&#progress-item {
+				margin: 0 25px;
+			}
+			&::after:not(last-child) {
+				content: '';
+				width: 52px;
+				height: 2px;
+				z-index: 1;
+				background: $color-bg;
+				position: absolute;
+				left: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+		}
+	}
+	&__wrapper {
+		background-color: $secondaryColor;
+		padding: relSize(55, 15);
+		border-radius: 15px;
+		opacity: 0.8;
+		width: 50%;
+	}
+	&__contain {
+		opacity: 1;
+		text-align: center;
+		input[type="text"] {
+			width: 46%;
+			float: left;
+			margin: 10px;
+			border: none;
+			border-bottom: 2px solid $color-bg;
+			transition: 0.5s ease-in-out;
+			color: $color-bg;
+			@include placeholder {
+				color: $color-bg;
+				font-size: relSize(16,16);
+			}
+			&:focus,
+			&:active {
+				padding-bottom: 2;
+			}
+		}
+		input[type="button"] {
+			border: 2px solid $color-bg;
+			background-color: $color-bg;
+			color: $secondaryColor;
+			clear: both;
+			font-size: relSize(16,16);
+			margin: 25px 10px;
+			width: 250px;
+			text-transform: uppercase;
+		}
+	}
+}

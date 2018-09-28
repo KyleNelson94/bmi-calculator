@@ -1,0 +1,17 @@
+.c {
+    &__pull {
+        margin-top: -#{relSize(144, 16)};
+        margin-top: -8.727272727272727vw;
+        position: relative;
+    }
+    &__block {
+        //Class used for even spacing after components
+        margin-bottom: relSize(75, 16);
+        @include below1024 {
+            margin-bottom: relSize(40, 16);
+        }
+    }
+    &__sectionPadding {
+        padding: relSize(100, 16) 0;
+    }
+}

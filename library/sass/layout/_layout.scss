@@ -1,0 +1,503 @@
+//PREFIX
+////l__
+
+.l {
+    &__pushtop {
+        padding-top: relSize(50, 16);
+    }
+    &__contain {
+        max-width: $maxWidth;
+        margin: 0 auto;
+        padding: $containerPadding;
+        width: 100%;
+        &--full {
+            padding: 0;
+        }
+    }
+    &__wrap {
+        position: relative;
+    }
+    &__flexheight {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    &__gridmaintain {
+        height: 100%;
+    }
+    &__flex {
+        &__col {
+            display: flex;
+            flex-direction: column;
+        }
+        &__center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+//Respond, fluid layout
+@mixin col-mixin($l__col, $cols) {
+	$pixelVal: ($maxWidth / $cols) * $l__col;
+	width: percentage($pixelVal / $maxWidth);
+	//After calculating the pixel width of the required l__column dividing this target by the context (maxWidth) will give the percentage for that l__column.
+}
+@mixin offby-mixin($offBy) {
+	$pixelVal: ($maxWidth / $l__colNumber) * $offBy;
+	margin-left: percentage($pixelVal / $maxWidth);
+}
+@mixin offby-alt-mixin($offBy) {
+	$pixelVal: ($maxWidth / $l__colNumber) * $offBy;
+	margin-right: percentage($pixelVal / $maxWidth);
+}
+
+@mixin resetRow {
+    @include below1366 {
+        .l__row[data-1366*="flush"] {
+            margin: 0;
+            > .l__col, > .l__flexheight > .l__col {
+                > .l__col__evenpad {
+                    margin: 0;
+                }
+            }
+        }
+        .l__row {
+            &[data-1366*="negative20"] {
+                margin: 0 -20px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 20px;
+                    }
+                }
+            }
+            &[data-1366*="negative15"] {
+                margin: 0 -15px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 15px;
+                    }
+                }
+            }
+            &[data-1366*="negative10"] {
+                margin: 0 -10px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            &[data-1366*="negative5"] {
+                margin: 0 -5px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+    @include below1024 {
+        .l__row[data-1024*="flush"] {
+            margin: 0;
+            > .l__col, > .l__flexheight > .l__col {
+                > .l__col__evenpad {
+                    margin: 0;
+                }
+            }
+        }
+        .l__row {
+            &[data-1024*="negative20"] {
+                margin: 0 -20px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 20px;
+                    }
+                }
+            }
+            &[data-1024*="negative15"] {
+                margin: 0 -15px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 15px;
+                    }
+                }
+            }
+            &[data-1024*="negative10"] {
+                margin: 0 -10px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            &[data-1024*="negative5"] {
+                margin: 0 -5px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+    @include below768 {
+        .l__row[data-768*="flush"] {
+            margin: 0;
+            > .l__col, > .l__flexheight > .l__col {
+                > .l__col__evenpad {
+                    margin: 0;
+                }
+            }
+        }
+        .l__row {
+            &[data-768*="negative20"] {
+                margin: 0 -20px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 20px;
+                    }
+                }
+            }
+            &[data-768*="negative15"] {
+                margin: 0 -15px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 15px;
+                    }
+                }
+            }
+            &[data-768*="negative10"] {
+                margin: 0 -10px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            &[data-768*="negative5"] {
+                margin: 0 -5px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+    @include below480 {
+        .l__row[data-480*="flush"] {
+            margin: 0;
+            > .l__col, > .l__flexheight > .l__col {
+                > .l__col__evenpad {
+                    margin: 0;
+                }
+            }
+        }
+        .l__row {
+            &[data-480*="negative20"] {
+                margin: 0 -20px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 20px;
+                    }
+                }
+            }
+            &[data-480*="negative15"] {
+                margin: 0 -15px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 15px;
+                    }
+                }
+            }
+            &[data-480*="negative10"] {
+                margin: 0 -10px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            &[data-480*="negative5"] {
+                margin: 0 -5px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+    @include below360 {
+        .l__row[data-360*="flush"] {
+            margin: 0;
+            > .l__col, > .l__flexheight > .l__col {
+                > .l__col__evenpad {
+                    margin: 0;
+                }
+            }
+        }
+        .l__row {
+            &[data-360*="negative20"] {
+                margin: 0 -20px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 20px;
+                    }
+                }
+            }
+            &[data-360*="negative15"] {
+                margin: 0 -15px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 15px;
+                    }
+                }
+            }
+            &[data-360*="negative10"] {
+                margin: 0 -10px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 10px;
+                    }
+                }
+            }
+            &[data-360*="negative5"] {
+                margin: 0 -5px;
+                > .l__col, > .l__flexheight > .l__col {
+                    > .l__col__evenpad {
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.l__row {
+	clear: both;
+    &__negative5 {
+		margin: 0 -5px;
+        > .l__col, > .l__flexheight > .l__col {
+            > .l__col__evenpad {
+                margin: 0 5px;
+            }
+        }
+	}
+	&__negative10 {
+		margin: 0 -10px;
+        > .l__col, > .l__flexheight > .l__col {
+            > .l__col__evenpad {
+                margin: 0 10px;
+            }
+        }
+    }
+    &__negative15 {
+		margin: 0 -15px;
+        > .l__col, > .l__flexheight > .l__col {
+            > .l__col__evenpad {
+                margin: 0 15px;
+            }
+        }
+	}
+	&__negative20 {
+		margin: 0 -20px;
+        > .l__col, > .l__flexheight > .l__col {
+            > {
+                .l__col__evenpad {
+                    margin: 0 20px;
+                }
+            }
+        }
+	}
+	&__negative30 {
+		margin: 0 -30px;
+        > .l__col, > .l__flexheight > .l__col {
+            > .l__col__evenpad {
+                margin: 0 30px;
+            }
+        }
+	}
+    &__altlayout {
+        &.l__row {
+            > [class*="l__col"], .l__flexheight > [class*="l__col"] {
+                float: right;
+            }
+        }
+    }
+    
+    @include resetRow;
+
+    .l__col {
+        &__evenpad {
+            margin: 0 10px;
+        }
+        &__span1, &__span1-5, &__span2, &__span2-4, &__span3, &__span3-3, &__span4, &__span5, &__span6, &__span7, &__span8, &__span9, &__span10, &__span11, &__span12, &__span13, &__span14, &__span15, &__span16, &__span17, &__span18, &__span19, &__span20, &__span21, &__span22, &__span23, &__span24 {
+            float: left;
+        }
+        @for $i from 1 through 12 {
+            &__span#{$i} {
+                @include col-mixin($i, 12);
+            }
+            &__offby#{$i} {
+                @include offby-mixin($i);
+            }
+            @include below1366 {
+                &[data-1366*="#{$i}"] {
+                    @include col-mixin($i, 12);
+                }
+                &[data-offby1366*="#{$i}"] {
+                    @include offby-mixin($i);
+                }
+            }
+            @include below1024 {
+                &[data-1024*="#{$i}"] {
+                    @include col-mixin($i, 12);
+                }
+                &[data-offby1024*="#{$i}"] {
+                    @include offby-mixin($i);
+                }
+            }
+            @include below768 {
+                &[data-768*="#{$i}"] {
+                    @include col-mixin($i, 12);
+                }
+                &[data-offby768*="#{$i}"] {
+                    @include offby-mixin($i);
+                }
+            }
+            @include below480 {
+                &[data-480*="#{$i}"] {
+                    @include col-mixin($i, 12);
+                }
+                &[data-offby480*="#{$i}"] {
+                    @include offby-mixin($i);
+                }
+                &[data-offby480="false"] {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+            @include below360 {
+                &[data-360*="#{$i}"] {
+                    @include col-mixin($i, 12);
+                }
+                &[data-offby360*="#{$i}"] {
+                    @include offby-mixin($i);
+                }
+            }
+        }
+        @include below1366 {
+            &[data-offby1366="0"] {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        @include below1024 {
+            &[data-offby1024="0"] {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        @include below768 {
+            &[data-offby768="0"] {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        @include below480 {
+            &[data-offby480="0"] {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        @include below360 {
+            &[data-offby360="0"] {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+    
+    &Flex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        @for $i from 1 through 12 {
+            .l__col {
+                &__span#{$i} {
+                    flex-basis: ((100 / 12) * $i) * 1%;
+                    flex-grow: 1;
+                }
+                @include below1366 {
+                    &[data-1366*="#{$i}"] {
+                        flex-basis: ((100 / 12) * $i) * 1%;
+                    }
+                }
+
+                @include below1024 {
+                    &[data-1024*="#{$i}"] {
+                        flex-basis: ((100 / 12) * $i) * 1%;
+                    }
+                }
+
+                @include below768 {
+                    &[data-768*="#{$i}"] {
+                        flex-basis: ((100 / 12) * $i) * 1%;
+                    }
+                }
+                @include below480 {
+                    &[data-480*="#{$i}"] {
+                        flex-basis: ((100 / 12) * $i) * 1%;
+                    }
+                }
+
+                @include below360 {
+                    &[data-360*="#{$i}"] {
+                        flex-basis: ((100 / 12) * $i) * 1%;
+                    }
+                }
+            }
+        }
+
+        &--center {
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+@include resetRow;
+
+
+@include below1024 {
+    [data-1024*="reverse"] {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@include below768 {
+    [data-768*="reverse"] {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@include below480 {
+    [data-480*="reverse"] {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+.l__row__altlayout {
+	//Offsets
+    .l__col {
+        @for $i from 1 through 12 {
+            &__offby#{$i} {
+                @include offby-alt-mixin($i);
+            }
+        }
+    }
+}

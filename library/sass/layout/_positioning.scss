@@ -1,0 +1,24 @@
+//PREFIX
+////l__
+
+.l {
+    &__position {
+        &--abcenter {
+            @include centre;
+        }
+        &--flexVertical {
+            align-items: center;
+            display: flex;
+        }
+        &--flexCenter {
+            @include flexCentre;
+        }
+    }
+    &__panel {
+        height: 50vh;
+        position: relative;
+        &--full {
+            height: 100vh;
+        }
+    }
+}

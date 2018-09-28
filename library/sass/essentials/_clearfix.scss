@@ -1,0 +1,21 @@
+.cf:before,
+.cf:after, .l__row:before, .l__row:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+    height: 0;
+    width: 0;
+}
+
+.cf:after, .l__row:after {
+    clear: both;
+}
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf, .l__row {
+	*zoom: 1;
+}
+.flowKill {
+    overflow: hidden;
+}
