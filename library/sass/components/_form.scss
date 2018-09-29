@@ -2,7 +2,10 @@ $formBorder: 1px solid $tertiaryColor;
 $formBorderRadius: 0;
 $formPadding: 0.625em;
 $labelSize: 0.8125em;
-
+.hidden {
+	display: none;
+	opacity: 0;
+}
 form {
 	margin: 0;
 	padding: 0;
@@ -132,9 +135,9 @@ input[type="submit"] {
 	top: 100%;
 	z-index: 1;
 	&::before {
-		border-bottom: 2 solid $errorcolor;
-		border-left: 2 solid transparent;
-		border-right: 2 solid transparent;
+		border-bottom: 2px solid $errorcolor;
+		border-left: 2px solid transparent;
+		border-right: 2px solid transparent;
 		content: "";
 		left: 2;
 		position: absolute;
@@ -191,11 +194,16 @@ input[type="submit"] {
 		border-radius: 15px;
 		opacity: 0.8;
 		width: 50%;
+		@include below1024 {
+			width: 75%;
+		}
 	}
 	&__contain {
 		opacity: 1;
 		text-align: center;
-		input[type="text"] {
+		transition: 0.5s ease-in-out;
+		input[type="text"],
+		input[type="number"] {
 			width: 46%;
 			float: left;
 			margin: 10px;
@@ -209,10 +217,14 @@ input[type="submit"] {
 			}
 			&:focus,
 			&:active {
-				padding-bottom: 2;
+				border-bottom: 2px solid $primaryColor;
+			}
+			@media(max-width: 880px) {
+				width: 100%;
 			}
 		}
-		input[type="button"] {
+		input[type="button"],
+		input[type="submit"] {
 			border: 2px solid $color-bg;
 			background-color: $color-bg;
 			color: $secondaryColor;
@@ -221,6 +233,7 @@ input[type="submit"] {
 			margin: 25px 10px;
 			width: 250px;
 			text-transform: uppercase;
+			clear: both;
 		}
 	}
 }

@@ -16,6 +16,7 @@ $(function() {
 	window.addEventListener('scroll', fw.animate);
 	
 });
+// Multi Step form
 multiform = {
 	config: {},
 	init : function() {
@@ -28,11 +29,46 @@ multiform = {
 	formSteps : function() {
 		var current, next, previous;
 		var left, opacity, scale;
-		var animating;
+		var animation;
+		var heightInput = document.getElementById('height');
+		var weightInput = document.getElementById('weight');
+
 		var nextButton = document.getElementById('next');
-//  Button log
+		var submitButton = document.getElementById('submit');
+
+		var firstEntry = document.getElementById('entry-1');
+		var secondEntry = document.getElementById('entry-2');
+		var thirdEntry = document.getElementById('entry-3');
+// Val
+		weightVal = weightInput.value;
+		heightVal = heightInput.value;
+//  Input log
+		weightInput.addEventListener('change', function() {
+			weightVal = weightInput.value;
+			console.log('weight: ' + weightInput.value);
+		});
+		heightInput.addEventListener('change', function() {
+			firstName = document.getElementById('firstName') ? document.getElementById('firstName').value : 'John';
+			lastName = document.getElementById('lastName') ? document.getElementById('lastName').value : 'Doe';
+			heightVal = heightInput.value;
+			console.log('height: ' + heightInput.value);
+			console.log('//////////////////////////********************');
+			var bmiVal = weightInput.value / (heightInput.value * heightInput.value);
+			console.log(bmiVal.toFixed(2)); // toFixed can manipulate the Decimal Placing
+			var bmiContainer = document.getElementById('bmiContainer');
+			bmiContainer.classList.remove('hidden');
+			bmiContainer.innerHTML += '<p>' +  'Dear ' + firstName + ' ' + lastName + ' your BMI Score is ' + '</p>' + '<h2>' + bmiVal.toFixed(2) + '</h2>';
+		});
 		nextButton.addEventListener('click', function() {
-			console.log('click');
+// Progress Bar
+			var firstItem = document.getElementsByClassName('item_1');
+			var secondItem = document.getElementsByClassName('item_2');
+
+			firstEntry.classList.add('hidden');
+			secondEntry.classList.remove('hidden');
+
+			firstItem.classList.remove('active');
+			secondItem.classList.add('active');
 		});
 	}
 };
