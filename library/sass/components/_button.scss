@@ -18,8 +18,10 @@
         color: $secondaryColor;
 	}
     &--alt {
+        border: 2px solid $color-bg;
         background: $secondaryColor;
-        color: $primaryColor;
+        color: $color-bg;
+        margin: 15px 0;
         &:hover {
 			background-color: darken($secondaryColor, 10%);
 		}

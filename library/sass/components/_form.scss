@@ -235,5 +235,22 @@ input[type="submit"] {
 			text-transform: uppercase;
 			clear: both;
 		}
+		&__content {
+			display: block;
+			clear: both;
+			padding: 15px 0;
+			p {
+				display: block;
+				font-size: 18px;
+				font-weight: 600;
+				margin: 20px 0;
+			}
+			h2 {
+				color: $color-bg;
+				border: 2px solid $color-bg;
+				padding: 10px;
+				margin: 0;
+			}
+		}
 	}
 }

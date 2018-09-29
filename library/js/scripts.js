@@ -27,9 +27,6 @@ multiform = {
 		_this.formSteps();
 	},
 	formSteps : function() {
-		var current, next, previous;
-		var left, opacity, scale;
-		var animation;
 		var heightInput = document.getElementById('height');
 		var weightInput = document.getElementById('weight');
 
@@ -48,8 +45,8 @@ multiform = {
 			console.log('weight: ' + weightInput.value);
 		});
 		heightInput.addEventListener('change', function() {
-			firstName = document.getElementById('firstName') ? document.getElementById('firstName').value : 'John';
-			lastName = document.getElementById('lastName') ? document.getElementById('lastName').value : 'Doe';
+			var firstName = document.getElementById('firstName') ? document.getElementById('firstName').value : 'John';
+			var lastName = document.getElementById('lastName') ? document.getElementById('lastName').value : 'Doe';
 			heightVal = heightInput.value;
 			console.log('height: ' + heightInput.value);
 			console.log('//////////////////////////********************');
@@ -57,7 +54,21 @@ multiform = {
 			console.log(bmiVal.toFixed(2)); // toFixed can manipulate the Decimal Placing
 			var bmiContainer = document.getElementById('bmiContainer');
 			bmiContainer.classList.remove('hidden');
-			bmiContainer.innerHTML += '<p>' +  'Dear ' + firstName + ' ' + lastName + ' your BMI Score is ' + '</p>' + '<h2>' + bmiVal.toFixed(2) + '</h2>';
+			bmiContainer.innerHTML += '<p>' +  'Dear ' + firstName + ' ' + lastName + ', ' + ' your BMI Score is: ' + '</p>' + '<h2>' + bmiVal.toFixed(2) + '</h2>' + '<a href="" class="btn btn--alt">Find out more</a>';
+
+			if(bmiVal >= 18 && bmiVal <= 24) {
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Healthy</p>' + '</div>';
+			} else if(bmiVal >= 12 && bmiVal <= 17) {
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Underweight</p>' + '</div>';
+			} else if(bmiVal >= 24 && bmiVal <= 29) { 
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Overweight</p>' + '</div>';
+			} else if(bmiVal >= 29 && bmiVal <= 39) {
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Obese</p>' + '</div>';
+			} else if (bmiVal >= 39) {
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Extremely Obese</p>' + '</div>';
+			} else {
+				bmiContainer.innerHTML += '<div class="c__form__contain__content__result" ' + '<p>Verdict: Unknown</p>' + '</div>';
+			}
 		});
 		nextButton.addEventListener('click', function() {
 // Progress Bar
